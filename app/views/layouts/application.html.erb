@@ -12,7 +12,28 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <header>
+      <ul>
+        <% if user_signed_in? %>
+          <li>
+            <%= link_to "My Account", edit_user_registration_path %>
+          </li>
+          <li>
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to "Create Account", new_user_registration_path %>
+          </li>
+          <li>
+            <%= link_to "Login", new_user_session_path %>
+          </li>
+        <% end %>
+      </ul>
+    </header>
+    <main class="container mx-auto mt-28 px-5">
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
       <%= yield %>
     </main>
   </body>
