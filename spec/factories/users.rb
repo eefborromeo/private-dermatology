@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :user do
     full_name { Faker::Name.name }
-    age { Faker::Number.between(from: 1, to: 99) }
     gender { Faker::Gender.binary_type }
     dob { Faker::Date.birthday(min_age: 1, max_age: 99) }
     contact_no { Faker::PhoneNumber.phone_number_with_country_code }
@@ -17,6 +16,6 @@ FactoryBot.define do
     end
 
     factory :admin, traits: [:admin, :confirmed]
-    facroty :user, traits: [:confirmed]
+    factory :confirmed_user, traits: [:confirmed]
   end
 end
