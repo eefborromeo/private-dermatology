@@ -15,5 +15,8 @@ FactoryBot.define do
     trait :confirmed do
       confirmed_at { 1.day.ago }
     end
+
+    factory :admin, traits: [:admin, :confirmed]
+    facroty :user, traits: [:confirmed]
   end
 end
