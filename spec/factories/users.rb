@@ -6,7 +6,8 @@ FactoryBot.define do
     contact_no { Faker::PhoneNumber.phone_number_with_country_code }
     email { Faker::Internet.email }
     address { Faker::Address.full_address }
-
+    password { Faker::Internet.password(min_length: 6) }
+    
     trait :admin do
       admin { true }
     end
