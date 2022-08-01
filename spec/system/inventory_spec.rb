@@ -11,10 +11,10 @@ RSpec.describe "Inventory", type: :system do
         it "will add products to inventory" do
             click_on "Inventory"
             click_on "Add Product"
-            fill_in "product_name", with: "Acne Cream"
-            fill_in "product_desc", with: "Acne Cream is used to treat acne"
-            fill_in "price", with: 200.00
-            fill_in "stocks", with: 5
+            fill_in "Product name", with: "Acne Cream"
+            fill_in "Product description", with: "Acne Cream is used to treat acne"
+            fill_in "Price", with: 200.00
+            fill_in "Stocks", with: 5
             click_on "Add"
             expect(page).to have_content("Product added to inventory")
         end
