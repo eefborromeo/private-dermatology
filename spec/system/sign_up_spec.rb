@@ -9,7 +9,7 @@ RSpec.describe "Sign up", type: :system do
         expect(current_path).to eq(new_user_registration_path)
         expect(page).to have_content("Sign up")
         fill_in "Full name", with: user.full_name
-        fill_in "Gender", with: user.gender
+        select user.gender, from: "Gender"
         fill_in "Date of Birth", with: user.dob
         fill_in "Contact No", with: user.contact_no
         fill_in "Email", with: user.email
