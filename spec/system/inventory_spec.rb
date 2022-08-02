@@ -17,6 +17,10 @@ RSpec.describe "Inventory", type: :system do
             fill_in "Stocks", with: 5
             click_on "Add"
             expect(page).to have_content("Product added to inventory")
+            page.find('table')
+            expect(page).to have_content("Acne Cream")
+            page.find('a', text: 'Edit')
+            page.find('a', text: 'Delete')
         end
     end
 
