@@ -2,7 +2,7 @@ class Admin::InventoryController < ApplicationController
     before_action :is_admin
 
     def index
-
+        @products = Product.all
     end
 
     def new
