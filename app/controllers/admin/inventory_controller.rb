@@ -1,8 +1,9 @@
 class Admin::InventoryController < ApplicationController
     before_action :is_admin
+    before_action :set_product, only: [:edit, :update, :destroy]
 
     def index
-        @products = Product.all
+        @products = Product.all.order(:product_name)
     end
 
     def new
@@ -19,6 +20,23 @@ class Admin::InventoryController < ApplicationController
         end
     end
 
+    def edit
+       
+    end
+
+    def update
+        if @product.update(product_params)
+            redirect_to admin_inventory_index_path, notice: "Product successfully edited"
+        else 
+            render :edit
+        end
+    end
+
+    def destroy
+        @product.destroy
+        redirect_to admin_inventory_index_path, notice: "Product deleted"
+    end
+
     private
 
     def is_admin
@@ -26,6 +44,10 @@ class Admin::InventoryController < ApplicationController
     end
 
     def product_params
-        params.require(:product).permit(:product_name, :product_desc, :price, :stock)
+        params.require(:product).permit(:product_name, :product_desc, :price, :stocks)
+    end
+
+    def set_product
+        @product = Product.find(params[:id])
     end
 end

@@ -12,9 +12,7 @@
         <% @products.each do |product|%>
             <tr>
                 <td><%= product.product_name %></td>
-                <td>
-                    <%= product.stocks %>
-                </td>
+                <td><%= product.stocks %></td>
                 <td>
                     <%= link_to "Edit", edit_admin_inventory_path(product) %>
                     <%= link_to "Delete", admin_inventory_path(product), method: :delete, data: { confirm: 'Are you sure?' } %>

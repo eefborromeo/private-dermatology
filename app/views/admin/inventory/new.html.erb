@@ -1,20 +1,2 @@
 <h1>Add Product</h1>
-<%= form_with model: @product, url: admin_inventory_index_path  do |form| %>
-    <div class="field">
-        <%= form.label :product_name %>
-        <%= form.text_field :product_name %>
-        </div>
-        <div class="field">
-        <%= form.label :product_desc, "Product description" %>
-        <%= form.text_area :product_desc %>
-        </div>
-        <div class="field">
-        <%= form.label :price %>
-        <%= form.number_field :price, min: 1 %>
-        </div>
-        <div class="field">
-        <%= form.label :stocks %>
-        <%= form.number_field :stocks, min: 0 %>
-    </div>
-    <%= form.submit "Add" %>
-<% end %>
+<%= render "form", product: @product, url: admin_inventory_index_path, method: :post %>
