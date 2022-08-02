@@ -1,0 +1,30 @@
+<%= form_with model: product, url: url, method: method  do |form| %>
+    <% if product.errors.any? %>
+        <div class="error">
+            <ul>    
+                <% product.errors.each do |error| %>
+                    <li> <%= error.full_message %> </li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <%= form.label :product_name %>
+        <%= form.text_field :product_name %>
+    </div>
+    <div class="field">
+        <%= form.label :product_desc, "Product description" %>
+        <%= form.text_area :product_desc %>
+    </div>
+    <div class="field">
+        <%= form.label :price %>
+        <%= form.number_field :price, min: 1 %>
+    </div>
+    <div class="field">
+        <%= form.label :stocks %>
+        <%= form.number_field :stocks, min: 1 %>
+    </div>
+
+    <%= form.submit %>
+<% end %>
