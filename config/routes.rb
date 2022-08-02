@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   resources :appointment, only: [:index]
+  resources :products
 
   namespace :admin do
     resources :dashboard
