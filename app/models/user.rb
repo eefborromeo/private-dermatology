@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
 
-  has_many :cart_item
+  has_many :cart_items
   has_many :products, through: :cart_item
 
   validates :full_name, presence: true
