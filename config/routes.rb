@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :appointment, only: [:index]
   resources :products, only: [:index, :show]
+  resources :cart, only: [:index, :create, :destroy]
 
   namespace :admin do
     resources :dashboard
