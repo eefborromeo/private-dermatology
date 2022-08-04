@@ -1,1 +1,8 @@
 <h1>Cart</h1>
+
+<% @cart_items.each do |item| %>
+    <%= item.product.product_name %>
+    <%= item.quantity %>
+    <%= item.product.price %>
+    <%= button_to "Remove", cart_path(item.id), method: :delete %>
+<% end %>
