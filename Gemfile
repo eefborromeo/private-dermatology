@@ -64,3 +64,6 @@ gem 'net-imap', require: false
 gem 'devise'
 gem "tailwindcss-rails", "~> 2.0"
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+gem 'dotenv-rails'
+gem "omniauth-rails_csrf_protection"
+gem 'omniauth-google-oauth2'
