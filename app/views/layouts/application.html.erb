@@ -25,7 +25,13 @@
             <li>
                 <%= link_to "Inventory", admin_inventory_index_path %>
             </li>
+            <li>
+                <%= link_to "Create Appointment Slots", new_slot_path %>
+            </li>
           <% end %>
+          <li>
+                <%= link_to "Appointment Slots", slot_index_path %>
+          </li>
           <li>
             <%= link_to "My Account", edit_user_registration_path %>
           </li>
