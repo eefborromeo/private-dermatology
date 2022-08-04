@@ -11,10 +11,10 @@ admin = User.create(
     password: 'admin123',
     password_confirmation: "admin123",
     full_name: 'Admin',
-    gender: nil,
-    dob: nil, 
-    contact_no: nil,
-    address: nil,
+    gender: "Female",
+    dob: '2022-08-01 00:00:00', 
+    contact_no: '+63 123 456 7890',
+    address: 'Cebu City, Cebu',
     admin: true,
 )
 
