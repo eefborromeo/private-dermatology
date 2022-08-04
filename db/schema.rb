@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_02_134152) do
+ActiveRecord::Schema.define(version: 2022_08_04_083903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,12 @@ ActiveRecord::Schema.define(version: 2022_08_02_134152) do
     t.datetime "dob"
     t.string "contact_no"
     t.text "address"
+    t.string "image", default: "https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png"
+    t.string "uid"
+    t.string "provider"
+    t.string "access_token"
+    t.string "refresh_token"
+    t.integer "expires_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
