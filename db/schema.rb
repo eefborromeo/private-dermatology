@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_04_230520) do
+ActiveRecord::Schema.define(version: 2022_08_04_231848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appointments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "slot_id"
+    t.text "reason"
+    t.text "note"
+    t.integer "status"
+    t.boolean "interaction"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["slot_id"], name: "index_appointments_on_slot_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
 
   create_table "cart_items", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -70,6 +83,8 @@ ActiveRecord::Schema.define(version: 2022_08_04_230520) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "appointments", "slots"
+  add_foreign_key "appointments", "users"
   add_foreign_key "cart_items", "products"
   add_foreign_key "cart_items", "users"
 end
