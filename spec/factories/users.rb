@@ -16,7 +16,16 @@ FactoryBot.define do
       confirmed_at { 1.day.ago }
     end
 
+    trait :incomplete_details do
+      full_name { "Please Update" }
+      gender { "Selecy" }
+      dob { '0001-01-01 00:00:00' }
+      contact_no { "Please Update" }
+      address { "Please Update" }
+    end
+
     factory :admin, traits: [:admin, :confirmed]
     factory :confirmed_user, traits: [:confirmed]
+    factory :incomplete_user, traits: [:incomplete_details]
   end
 end
