@@ -7,9 +7,11 @@
 <div> Slots </div>
 <div>
   <% @slots.each do |slot| %>
+  <div>
     <%= slot.id %>
     <%= slot.date %>
     <%= slot.interaction %>
+  </div>
   <% end %>
 </div>
 <div>
