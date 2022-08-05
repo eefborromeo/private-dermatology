@@ -13,9 +13,12 @@ class AppointmentController < ApplicationController
     def new
         @appointment = Appointment.new
         @slots = Slot.all
+        @slot = Slot.find(params[:slot_id])
     end
- def destroy
+
+    def destroy
     end
+
     def create
         @appointment = Appointment.new(appointment_params)
 
