@@ -24,6 +24,6 @@ class SlotController < ApplicationController
   end
 
   def slot_params
-    params.require(:slot).permit(:id, :date, :availability, :interaction)
+    params.require(:slot).permit(:id, :date, :time, :availability, :interaction)
   end
 end
