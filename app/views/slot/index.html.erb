@@ -1,6 +1,6 @@
 <%= month_calendar do |date| %>
   <div>
-   <%= link_to date.day, slot_index_path(:dateslot => date) %>
+   <%= link_to date.day, slot_index_path(dateslot: date) %>
   </div>
 <% end %>
 
@@ -8,7 +8,7 @@
 <div>
   <% @slots.each do |slot| %>
   <div>
-  <%= link_to new_appointment_path do %>
+  <%= link_to new_appointment_path(slot_id: slot.id) do %>
     <%= slot.id %>
     <%= slot.date %>
     <%= slot.time %>
