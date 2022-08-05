@@ -1,8 +1,16 @@
 <h1>Cart</h1>
 
-<% @cart_items.each do |item| %>
-    <%= item.product.product_name %>
-    <%= item.quantity %>
-    <%= item.product.price %>
-    <%= button_to "Remove", cart_path(item.id), method: :delete %>
-<% end %>
+<%= form_with url: new_transaction_path(:i), method: :get do |form| %>
+    <% @cart_items.each do |item| %>
+        <div class="border-red-400 border-solid border-2 w-1/3">
+            <%= item.product.product_name %>
+            <%= item.quantity %>
+            <%= item.product.price %>
+            <%= link_to "Remove", cart_path(item.id), method: :delete %>
+            <input type="checkbox" name="i[]" value="<%= item.id %>" id="i_<%= item.id %>">
+            <label for="i_<%= item.id %>">Add to checkout</label>
+        </div>
+    <% end %>
+  
+  <%= form.submit "Checkout" %>
+<%end%>
