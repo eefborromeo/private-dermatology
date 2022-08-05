@@ -38,8 +38,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.label :password %> 
+    <% if current_user.info_changed? %>
+      <i>(leave blank if you don't want to change it)</i>
+    <%end%>
+    <br />
+    <% if current_user.info_changed? %>
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    <%else%>
+      <%= f.password_field :password, autocomplete: "new-password", required: true %>
+    <%end%>
     <% if @minimum_password_length %>
       <br />
       <em><%= @minimum_password_length %> characters minimum</em>
@@ -48,19 +56,21 @@
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <% if current_user.info_changed? %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%else%>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
+    <%end%>
   </div>
 
-  <div class="field">
-    <%= f.label :current_password %> 
-    <i>(we need your current password to confirm your changes)</i> 
-    <% if current_user.provider != nil %>
+  <% unless current_user.info_changed == false %>
+    <div class="field">
+      <%= f.label :current_password %> 
+      <i>(we need your current password to confirm your changes)</i> 
       <br>
-      <i>(if this is your first time setting up your account, you can just type here your password from above.)</i> 
-    <%end%>
-    <br>
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+      <%= f.password_field :current_password, autocomplete: "current-password" %>
+    </div>
+  <%end%>
 
   <div class="actions">
     <%= f.submit "Update" %>
