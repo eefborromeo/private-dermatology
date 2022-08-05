@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :confirmable, :omniauthable, omniauth_providers: [:google_oauth2]
 
   has_many :cart_items
+  has_many :appointments
   has_many :products, through: :cart_item
          
   validates :full_name, presence: true
