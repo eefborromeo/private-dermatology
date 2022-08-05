@@ -5,6 +5,7 @@
 <% end %>
 
 <div> Slots </div>
+<div> Please select a day to view available slots </div>
 <div>
   <% @slots.each do |slot| %>
   <div>
@@ -17,7 +18,9 @@
   </div>
   <% end %>
 </div>
+<% if current_user.admin? %>
 <div>
   <%= link_to 'Add Slots', new_slot_path %>
 </div> 
+<% end %>
 
