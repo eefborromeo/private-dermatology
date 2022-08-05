@@ -2,3 +2,20 @@
 <br>
 
 <h1>This is Admin Transaction Index view</h1>
+
+<% @transactions.each do |t| %>
+  <%= link_to(admin_transaction_path(t)) do %>
+    <div class="border-solid border-4 border-red-400 w-1/3">
+      <%= t.prod_name %>
+      <br>
+      <%= t.prod_desc %>
+      <br>
+      Price <%= t.prod_price %>
+      <br>
+      Quantity <%= t.prod_quantity %>
+      <br>
+      Total <%= t.prod_total %>
+    </div>
+  <%end%>
+  <br>
+<%end%>
