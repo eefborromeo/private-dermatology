@@ -1,6 +1,7 @@
 class SlotController < ApplicationController
 
   def index
+    @slots = Slot.where('date=?', params[:dateslot])
   end
 
   def new
