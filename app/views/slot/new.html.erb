@@ -6,15 +6,21 @@
         <div class="category-add">
           <div class="field">
             <%= form.label :date, class: "text-left font-bold"%></br>
-            <%= form.datetime_local_field :date, class: "block border-1 border-black" %>
+            <%= form.date_field  :date, class: "block border-1 border-black" %>
+          </div>
+          <div class="field">
+            <%= form.label :time, class: "text-left font-bold"%></br>
+            <%= form.time_field  :time, class: "block border-1 border-black" %>
           </div>
         </div>
         <div class="category-add">
           <div class="field"></br>
-            <%= form.label :face_to_face, class: "font-bold" %></br>
-            <%= form.radio_button :interaction, class: "block border-1 border-black" %></br>
-            <%= form.label :online, class: "font-bold" %></br>
-            <%= form.radio_button :interaction, class: "block border-1 border-black" %></br>
+            <%= form.label :interaction, 'Online' %></br>
+            <%= form.radio_button :interaction, "online" %></br>
+            <%= form.label :interaction, 'Face To face' %></br>
+            <%= form.radio_button :interaction, "face_to_face" %></br>
+            <%= form.label :interaction, 'Online/Face To face' %></br>
+            <%= form.radio_button :interaction, "both" %></br>
           </div>
         </div>
         <div class="category-add">
