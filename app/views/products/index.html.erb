@@ -2,6 +2,8 @@
 <% @products.each do |product| %>
     <a href="<%=product_path(product)%>">
         <h2><%= product.product_name %></h2>
-        <span><%= product.price %></span>
+        <div>Price - <%= product.price %></div>
+        <div>Stocks - <%= product.stocks %></div>
     </a>
+    <br>
 <% end %>
