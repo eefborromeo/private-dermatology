@@ -1,1 +1,16 @@
-<h1>Create Appointment</h1>
+<div> Appointments </div>
+<% if current_user.admin? %>
+<div>
+  <% @admin_appointments.each do |admin_appointment| %>
+  <div>
+    <%= admin_appointment.id %>
+    <%= admin_appointment.slot_id %>
+    <%= admin_appointment.user_id %>
+    <%= admin_appointment.reason %>
+    <%= admin_appointment.note %>
+    <%= admin_appointment.status %>
+    <%= admin_appointment.interaction %>
+  </div>
+  <% end %>
+</div>
+<% end %>
