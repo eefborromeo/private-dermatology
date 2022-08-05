@@ -6,4 +6,5 @@ class Appointment < ApplicationRecord
   after_initialize :set_default_interaction, :if => :new_record?
   def set_default_interaction
     self.interaction ||= :online
+  end
 end
