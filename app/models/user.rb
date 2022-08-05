@@ -37,6 +37,7 @@ class User < ApplicationRecord
     user.access_token = auth.credentials.token
     user.expires_at = auth.credentials.expires_at
     user.refresh_token = auth.credentials.refresh_token
+    user.info_changed = false
     user.save
     
     user
