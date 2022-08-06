@@ -1,6 +1,7 @@
 <h1>Products</h1>
 <% @products.each do |product| %>
     <a href="<%=product_path(product)%>">
+        <%= image_tag product.product_image %>
         <h2><%= product.product_name %></h2>
         <div>Price - <%= product.price %></div>
         <div>Stocks - <%= product.stocks %></div>
