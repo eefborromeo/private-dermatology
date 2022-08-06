@@ -67,3 +67,4 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 gem 'dotenv-rails'
 gem "omniauth-rails_csrf_protection"
 gem 'omniauth-google-oauth2'
+gem "simple_calendar", "~> 2.4"

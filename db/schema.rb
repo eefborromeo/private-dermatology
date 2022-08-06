@@ -15,6 +15,19 @@ ActiveRecord::Schema.define(version: 2022_08_05_040204) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "appointments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "slot_id"
+    t.text "reason"
+    t.text "note"
+    t.integer "status"
+    t.boolean "interaction"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["slot_id"], name: "index_appointments_on_slot_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
+
   create_table "cart_items", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "product_id", null: false
@@ -34,6 +47,15 @@ ActiveRecord::Schema.define(version: 2022_08_05_040204) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+<<<<<<< HEAD
+  create_table "slots", force: :cascade do |t|
+    t.boolean "availability"
+    t.integer "interaction"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.date "date"
+    t.time "time"
+=======
   create_table "transactions", force: :cascade do |t|
     t.string "prod_name"
     t.text "prod_desc"
@@ -44,6 +66,7 @@ ActiveRecord::Schema.define(version: 2022_08_05_040204) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_transactions_on_user_id"
+>>>>>>> 3437e24a80d5ac31f31af45621dd0da6f6f6f490
   end
 
   create_table "users", force: :cascade do |t|
@@ -75,6 +98,8 @@ ActiveRecord::Schema.define(version: 2022_08_05_040204) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "appointments", "slots"
+  add_foreign_key "appointments", "users"
   add_foreign_key "cart_items", "products"
   add_foreign_key "cart_items", "users"
   add_foreign_key "transactions", "users"

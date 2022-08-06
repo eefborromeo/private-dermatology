@@ -1,0 +1,26 @@
+<%= month_calendar do |date| %>
+  <div>
+   <%= link_to date.day, slot_index_path(dateslot: date) %>
+  </div>
+<% end %>
+
+<div> Slots </div>
+<div> Please select a day to view available slots </div>
+<div>
+  <% @slots.each do |slot| %>
+  <div>
+  <%= link_to new_appointment_path(slot_id: slot.id) do %>
+    <%= slot.id %>
+    <%= slot.date %>
+    <%= slot.time %>
+    <%= slot.interaction %>
+  <% end %>
+  </div>
+  <% end %>
+</div>
+<% if current_user.admin? %>
+<div>
+  <%= link_to 'Add Slots', new_slot_path %>
+</div> 
+<% end %>
+

@@ -1,0 +1,36 @@
+<div class='flex justify-center content-center text-center flex-col w-auto'>
+  <div class='font-bold pt-64 pb-10 text-5xl'> New Slots </div>
+  <div class='flex w-96 justify-center content-center self-center'>
+    <%= form_with model: @slot, url: slot_index_path do |form| %>
+      <div class="category-detail-list">
+        <div class="category-add">
+          <div class="field">
+            <%= form.label :date, class: "text-left font-bold"%></br>
+            <%= form.date_field  :date, class: "block border-1 border-black" %>
+          </div>
+          <div class="field">
+            <%= form.label :time, class: "text-left font-bold"%></br>
+            <%= form.time_field  :time, class: "block border-1 border-black" %>
+          </div>
+        </div>
+        <div class="category-add">
+          <div class="field"></br>
+            <%= form.label :interaction, 'Online' %></br>
+            <%= form.radio_button :interaction, "online" %></br>
+            <%= form.label :interaction, 'Face To face' %></br>
+            <%= form.radio_button :interaction, "face_to_face" %></br>
+            <%= form.label :interaction, 'Online/Face To face' %></br>
+            <%= form.radio_button :interaction, "both" %></br>
+          </div>
+        </div>
+        <div class="category-add">
+          <div class="field"></br>
+            <%= form.hidden_field :availability, value: "True" %>
+          </div>
+        </div>
+      <div class="submit"></br>
+        <button class='text-xl font-bold bg-cyan-500 uppercase p-1 rounded-2xl border-2 border-solid border-black w-48'><%= form.submit "Submit", class: "button-form" %></button>
+      </div>
+    <% end %>
+  </div>
+</div>
