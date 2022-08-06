@@ -10,23 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_05_040204) do
+ActiveRecord::Schema.define(version: 2022_08_05_191709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "appointments", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "slot_id"
-    t.text "reason"
-    t.text "note"
-    t.integer "status"
-    t.boolean "interaction"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["slot_id"], name: "index_appointments_on_slot_id"
-    t.index ["user_id"], name: "index_appointments_on_user_id"
-  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -56,6 +43,19 @@ ActiveRecord::Schema.define(version: 2022_08_05_040204) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "appointments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "slot_id"
+    t.text "reason"
+    t.text "note"
+    t.integer "status"
+    t.boolean "interaction"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["slot_id"], name: "index_appointments_on_slot_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
+
   create_table "cart_items", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "product_id", null: false
@@ -75,7 +75,6 @@ ActiveRecord::Schema.define(version: 2022_08_05_040204) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-<<<<<<< HEAD
   create_table "slots", force: :cascade do |t|
     t.boolean "availability"
     t.integer "interaction"
@@ -83,7 +82,8 @@ ActiveRecord::Schema.define(version: 2022_08_05_040204) do
     t.datetime "updated_at", precision: 6, null: false
     t.date "date"
     t.time "time"
-=======
+  end
+
   create_table "transactions", force: :cascade do |t|
     t.string "prod_name"
     t.text "prod_desc"
@@ -94,7 +94,6 @@ ActiveRecord::Schema.define(version: 2022_08_05_040204) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_transactions_on_user_id"
->>>>>>> 3437e24a80d5ac31f31af45621dd0da6f6f6f490
   end
 
   create_table "users", force: :cascade do |t|
@@ -126,10 +125,10 @@ ActiveRecord::Schema.define(version: 2022_08_05_040204) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "appointments", "slots"
-  add_foreign_key "appointments", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "appointments", "slots"
+  add_foreign_key "appointments", "users"
   add_foreign_key "cart_items", "products"
   add_foreign_key "cart_items", "users"
   add_foreign_key "transactions", "users"
