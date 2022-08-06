@@ -1,4 +1,6 @@
 class Admin::TransactionController < ApplicationController
+  before_action :check_user_info, if: :user_signed_in?
+  
   def index
     @transactions = Transaction.all
   end

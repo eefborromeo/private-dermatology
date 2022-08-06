@@ -7,4 +7,10 @@ class Appointment < ApplicationRecord
   def set_default_interaction
     self.interaction ||= :online
   end
+
+  enum status: [:reserved, :confirmed, :cancelled, :completed]
+  after_initialize :set_default_status, :if => :new_record?
+  def set_default_status
+    self.status ||= :reserved
+  end
 end

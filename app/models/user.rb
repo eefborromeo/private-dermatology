@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :appointments
   has_many :products, through: :cart_item
   has_many :transactions
+  has_many :appointments
          
   validates :full_name, presence: true
   validates :gender, presence: true
