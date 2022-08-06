@@ -1,10 +1,12 @@
 class AppointmentController < ApplicationController
-    skip_before_action :authenticate_user!, only: [:index]
     before_action :check_user_info, if: :user_signed_in?
 
     def index
-        @admin_appointments = Appointment.all
-        @user_appointments = Appointment.where("patient_id = current_user")
+      if current_user.admin?
+        @appointments = Appointment.all
+      else
+        @appointments = current_user.appointments
+      end
     end
 
     def show
@@ -35,6 +37,6 @@ class AppointmentController < ApplicationController
     end
 
     def appointment_params
-        params.require(:appointment).permit(:id, :date, :reason, :note, :status , :interaction, :user_id, :slot_id)
+        params.require(:appointment).permit(:reason, :note, :status , :interaction, :user_id, :slot_id)
     end
 end

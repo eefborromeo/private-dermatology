@@ -5,25 +5,14 @@
       <div class="category-detail-list">
         <div class="category-add">
           <div class="field">
-            <%= form.label :date, class: "text-left font-bold"%></br>
-            <%= form.date_field :date, value: @slot.date, class: "block border-1 border-black" %>
-          </div>
-          <div class="field">
-            <%= form.label :time, class: "text-left font-bold"%></br>
-            <%= form.time_field :time, value: @slot.time.strftime("%H:%M"), class: "block border-1 border-black" %>
+            <%= form.label :reason, class: "text-left font-bold"%></br>
+            <%= form.text_field :reason, class: "block border-1 border-black" %>
           </div>
         </div>
         <div class="category-add">
           <div class="field"></br>
-            <%= form.label :interaction, 'Online' %></br>
-            <%= form.radio_button :interaction, "online" %></br>
-            <%= form.label :interaction, 'Face To face' %></br>
-            <%= form.radio_button :interaction, "face_to_face" %></br>
-          </div>
-        </div>
-        <div class="category-add">
-          <div class="field"></br>
-            <%= form.hidden_field :availability, value: "True" %>
+            <%= form.hidden_field :slot_id, value: @slot.id %>
+            <%= form.hidden_field :user_id, value: current_user.id %>
           </div>
         </div>
       <div class="submit"></br>
