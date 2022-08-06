@@ -9,8 +9,7 @@
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
-
-ActiveRecord::Schema.define(version: 2022_08_05_020117) do
+ActiveRecord::Schema.define(version: 2022_08_05_040204) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,6 +45,7 @@ ActiveRecord::Schema.define(version: 2022_08_05_020117) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+<<<<<<< HEAD
   create_table "slots", force: :cascade do |t|
     t.boolean "availability"
     t.integer "interaction"
@@ -53,6 +53,18 @@ ActiveRecord::Schema.define(version: 2022_08_05_020117) do
     t.datetime "updated_at", precision: 6, null: false
     t.date "date"
     t.time "time"
+=======
+  create_table "transactions", force: :cascade do |t|
+    t.string "prod_name"
+    t.text "prod_desc"
+    t.integer "prod_price"
+    t.integer "prod_quantity"
+    t.integer "prod_total"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_transactions_on_user_id"
+>>>>>>> 3437e24a80d5ac31f31af45621dd0da6f6f6f490
   end
 
   create_table "users", force: :cascade do |t|
@@ -88,4 +100,5 @@ ActiveRecord::Schema.define(version: 2022_08_05_020117) do
   add_foreign_key "appointments", "users"
   add_foreign_key "cart_items", "products"
   add_foreign_key "cart_items", "users"
+  add_foreign_key "transactions", "users"
 end

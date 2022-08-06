@@ -35,3 +35,17 @@ patient = User.create(
 
 patient.skip_confirmation!
 patient.save
+
+Product.create(
+    product_name: "Acne cream",
+    product_desc: "This product can heal your acne. Best for angsty teens.",
+    price: 420,
+    stocks: 69
+)
+
+Product.create(
+    product_name: "Tortillos",
+    product_desc: "Junk food, but glorious!",
+    price: 32,
+    stocks: 69
+)
