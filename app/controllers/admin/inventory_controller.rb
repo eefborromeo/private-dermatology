@@ -1,6 +1,7 @@
 class Admin::InventoryController < ApplicationController
     before_action :is_admin
     before_action :set_product, only: [:edit, :update, :destroy]
+    before_action :check_user_info, if: :user_signed_in?
 
     def index
         @products = Product.all.order(:product_name)
@@ -38,11 +39,6 @@ class Admin::InventoryController < ApplicationController
     end
 
     private
-
-    def is_admin
-        redirect_to root_path unless current_user.admin?
-    end
-
     def product_params
         params.require(:product).permit(:product_name, :product_desc, :price, :stocks, :product_image)
     end

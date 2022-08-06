@@ -1,5 +1,6 @@
 class TransactionController < ApplicationController
   include TransactionHelper
+  before_action :check_user_info, if: :user_signed_in?
 
   def index
     @transactions = current_user.transactions

@@ -1,4 +1,7 @@
 class SlotController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index]
+  before_action :is_admin, only: [:new, :create]
+  before_action :check_user_info, if: :user_signed_in?
 
   def index
     @slots = Slot.where("date=?", params[:dateslot])
