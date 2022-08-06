@@ -44,7 +44,7 @@ class Admin::InventoryController < ApplicationController
     end
 
     def product_params
-        params.require(:product).permit(:product_name, :product_desc, :price, :stocks)
+        params.require(:product).permit(:product_name, :product_desc, :price, :stocks, :product_image)
     end
 
     def set_product

@@ -12,6 +12,7 @@ RSpec.describe "Inventory", type: :system do
 
         it "will add products to inventory" do
             click_on "Add Product"
+            attach_file('Product image', './spec/support/acnecream.png')
             fill_in "Product name", with: product.product_name
             fill_in "Product description", with: product.product_desc
             fill_in "Price", with: product.price
@@ -19,6 +20,7 @@ RSpec.describe "Inventory", type: :system do
             click_on "Create Product"
             expect(page).to have_content("Product added to inventory")
             page.find('table')
+            expect(page).to have_css('img')
             expect(page).to have_content("Acne Cream")
             page.find('a', text: 'Edit')
             page.find('a', text: 'Delete')
@@ -53,6 +55,7 @@ RSpec.describe "Inventory", type: :system do
 
     def add_product
         click_on "Add Product"
+        attach_file('Product image', './spec/support/acnecream.png')
         fill_in "Product name", with: product.product_name
         fill_in "Product description", with: product.product_desc
         fill_in "Price", with: product.price

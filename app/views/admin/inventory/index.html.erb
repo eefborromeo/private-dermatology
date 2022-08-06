@@ -3,6 +3,7 @@
 <table class="table-fixed">
     <thead>
         <tr>
+            <th>Product Image</th>
             <th>Product Name</th>
             <th>Quantity</th>
             <th>Actions</th>
@@ -11,6 +12,7 @@
     <tbody>
         <% @products.each do |product|%>
             <tr>
+                <td><%= image_tag product.product_image.variant(resize_to_limit: [nil, 80]) %></td>
                 <td><%= product.product_name %></td>
                 <td><%= product.stocks %></td>
                 <td>
