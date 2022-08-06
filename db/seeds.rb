@@ -36,16 +36,19 @@ patient = User.create(
 patient.skip_confirmation!
 patient.save
 
-Product.create(
+product1 = Product.create(
     product_name: "Acne cream",
     product_desc: "This product can heal your acne. Best for angsty teens.",
     price: 420,
     stocks: 69
 )
 
-Product.create(
+product2 = Product.create(
     product_name: "Tortillos",
     product_desc: "Junk food, but glorious!",
     price: 32,
     stocks: 69
 )
+
+product1.product_image.attach(io: File.open('app/assets/images/acnecream.png'), filename: 'acnecream.png', content_type: 'image/png')
+product2.product_image.attach(io: File.open('app/assets/images/acnecream.png'), filename: 'acnecream.png', content_type: 'image/png')
