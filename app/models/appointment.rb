@@ -2,10 +2,16 @@ class Appointment < ApplicationRecord
   belongs_to :slot
   belongs_to :user
 
-  enum interaction: [:online, :face_to_face]
-  after_initialize :set_default_interaction, :if => :new_record?
-  def set_default_interaction
-    self.interaction ||= :online
+  before_create :set_interaction
+
+  def set_interaction
+    slot = Slot.find(self.slot_id)
+
+    if slot.interaction == 1
+      self.interaction = "Face to Face"
+    else
+      self.interaction = "Online"
+    end
   end
 
   enum status: [:reserved, :confirmed, :cancelled, :completed]
