@@ -1,17 +1,15 @@
 class Admin::TransactionController < ApplicationController
   before_action :check_user_info, if: :user_signed_in?
-  
+  include Admin::TransactionHelper
+
   def index
-    @transactions = Transaction.all
+    @product_transactions = display_product_transactions
+    @appointment_transactions = display_appointment_transactions
   end
 
   def show
-    @transaction = Transaction.find(params[:id])
   end
 
   def destroy
-    transaction = Transaction.find(params[:id])
-    transaction.destroy!
-    redirect_to admin_transaction_index_path, notice: "Successfully deleted transaction"
   end
 end
