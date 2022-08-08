@@ -8,14 +8,25 @@
 <div> Please select a day to view available slots </div>
 <div>
   <% @slots.each do |slot| %>
-  <div>
-  <%= link_to new_appointment_path(slot_id: slot.id) do %>
-    <%= slot.id %>
-    <%= slot.date %>
-    <%= slot.time %>
-    <%= slot.interaction %>
-  <% end %>
-  </div>
+    <div>
+      <% if slot.availability == true %>
+        <%= link_to new_appointment_path(slot_id: slot.id) do %>
+          <%= slot.id %>
+          <%= slot.date.strftime('%-B %-d, %Y') %> <%# is this a bit redundant? %>
+          <%= slot.time.strftime("%I:%M%p") %>
+          <%= slot.interaction %>
+          <p>Open</p>
+        <% end %>
+      <%else%>
+        <div class="color-gray-300">
+          <%= slot.id %>
+          <%= slot.date.strftime('%-B %-d, %Y') %> <%# is this a bit redundant? %>
+          <%= slot.time.strftime("%I:%M%p") %>
+          <%= slot.interaction %>
+          <p>Booked</p>
+        </div>
+      <%end%>
+    </div>
   <% end %>
 </div>
 <% if user_signed_in? && current_user.admin? %>
