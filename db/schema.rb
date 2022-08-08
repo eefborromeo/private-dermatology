@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_05_191709) do
+ActiveRecord::Schema.define(version: 2022_08_08_134536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,13 +43,27 @@ ActiveRecord::Schema.define(version: 2022_08_05_191709) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "appointment_transactions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "transaction_id"
+    t.date "appt_date"
+    t.time "appt_time"
+    t.string "appt_reason"
+    t.text "appt_note"
+    t.string "appt_interaction"
+    t.string "appt_status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_appointment_transactions_on_user_id"
+  end
+
   create_table "appointments", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "slot_id"
     t.text "reason"
     t.text "note"
     t.integer "status"
-    t.boolean "interaction"
+    t.string "interaction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["slot_id"], name: "index_appointments_on_slot_id"
@@ -64,6 +78,19 @@ ActiveRecord::Schema.define(version: 2022_08_05_191709) do
     t.integer "quantity", default: 0
     t.index ["product_id"], name: "index_cart_items_on_product_id"
     t.index ["user_id"], name: "index_cart_items_on_user_id"
+  end
+
+  create_table "product_transactions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "transaction_id"
+    t.string "prod_name"
+    t.text "prod_desc"
+    t.integer "prod_price"
+    t.integer "prod_quantity"
+    t.integer "prod_total"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_product_transactions_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -82,18 +109,6 @@ ActiveRecord::Schema.define(version: 2022_08_05_191709) do
     t.datetime "updated_at", precision: 6, null: false
     t.date "date"
     t.time "time"
-  end
-
-  create_table "transactions", force: :cascade do |t|
-    t.string "prod_name"
-    t.text "prod_desc"
-    t.integer "prod_price"
-    t.integer "prod_quantity"
-    t.integer "prod_total"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -127,9 +142,10 @@ ActiveRecord::Schema.define(version: 2022_08_05_191709) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "appointment_transactions", "users"
   add_foreign_key "appointments", "slots"
   add_foreign_key "appointments", "users"
   add_foreign_key "cart_items", "products"
   add_foreign_key "cart_items", "users"
-  add_foreign_key "transactions", "users"
+  add_foreign_key "product_transactions", "users"
 end

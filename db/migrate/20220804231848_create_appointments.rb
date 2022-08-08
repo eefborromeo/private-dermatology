@@ -6,7 +6,7 @@ class CreateAppointments < ActiveRecord::Migration[6.1]
       t.text :reason
       t.text :note
       t.integer :status
-      t.boolean :interaction
+      t.string :interaction
 
       t.timestamps
     end
