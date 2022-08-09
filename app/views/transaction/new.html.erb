@@ -16,5 +16,16 @@
   </div>
   <br>
 <%end%>
-
-<%= link_to "Purchase", transaction_index_path(data: @data), method: :post %>
+<br>
+<h1>The overall checkout total</h1>
+<%= @checkout_total %>
+<br>
+<br>
+<br>
+<br>
+<p>Proceed to Payment</p>
+<%= form_with url: payments_gcash_payment_path, method: :post do |form| %>
+  <%= form.hidden_field :amount, value: @checkout_total %>
+  <%= form.hidden_field :payment_category, value: "Dermatology Product Payment" %>
+  <%= form.submit "Pay with GCash" %>
+<%end%>

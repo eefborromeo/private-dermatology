@@ -21,6 +21,13 @@ admin = User.create(
 admin.skip_confirmation!
 admin.save
 
+slot = Slot.create(
+    availability: true,
+    interaction: 0,
+    date: Date.tomorrow,
+    time: Time.current
+)
+
 patient = User.create(
     email: 'patient@privatedermatology.com',
     password: 'patient123',
@@ -52,3 +59,4 @@ product2 = Product.create(
 
 product1.product_image.attach(io: File.open('app/assets/images/acnecream.png'), filename: 'acnecream.png', content_type: 'image/png')
 product2.product_image.attach(io: File.open('app/assets/images/acnecream.png'), filename: 'acnecream.png', content_type: 'image/png')
+
