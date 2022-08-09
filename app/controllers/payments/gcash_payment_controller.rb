@@ -17,9 +17,10 @@ class Payments::GcashPaymentController < ApplicationController
   end
 
   def failed
-    session.delete(:gcash_transaction_id)
+    session.delete(:gcash_source_id)
     session.delete(:payment_category)
     session.delete(:transaction_amount)
+    session.delete(:transaction_data)
     redirect_to root_path, alert: "Your transaction failed, please try again."
   end
 end
