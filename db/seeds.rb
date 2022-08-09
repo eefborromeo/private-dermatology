@@ -25,7 +25,7 @@ slot = Slot.create(
     availability: true,
     interaction: 0,
     date: Date.tomorrow,
-    time: Time.current
+    time: Time.now
 )
 
 patient = User.create(
