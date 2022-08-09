@@ -5,12 +5,6 @@ module Admin
 
       ProductTransaction.all.each do |pt|
         user = User.find(pt.user_id)
-        puts "Hello"
-        puts "Hello"
-        puts "Hello"
-        puts "Hello"
-        puts user
-
         data = {
           full_name: user.full_name,
           email: user.email,
