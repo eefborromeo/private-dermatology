@@ -23,10 +23,10 @@ class TransactionController < ApplicationController
 
   def complete
     if session[:payment_category] == "Dermatology Product Payment"
-      process_product_transaction(session[:transaction_data], session[:gcash_transaction_id])
+      process_product_transaction
       redirect_to root_path, notice: "Your Product payment was successful!"
     else
-      process_appointment_transaction(session[:transaction_data], session[:gcash_transaction_id])
+      process_appointment_transaction
       redirect_to root_path, notice: "Your Appointment payment was successful!"
     end
   end
