@@ -6,15 +6,17 @@ class Product < ApplicationRecord
     validate :acceptable_image
 
     def acceptable_image
-        return unless product_image.attached?
+        if product_image.attached? 
+            unless product_image.byte_size <= 2.megabyte
+                errors.add(:product_image, "is too big")
+            end
 
-        unless product_image.byte_size <= 2.megabyte
-            errors.add(:product_image, "is too big")
-        end
-
-        acceptable_types = ["image/jpeg", "image/png"]
-        unless acceptable_types.include?(product_image.content_type)
-            errors.add(:product_image, "must be a JPEG or PNG")
+            acceptable_types = ["image/jpeg", "image/png"]
+            unless acceptable_types.include?(product_image.content_type)
+                errors.add(:product_image, "must be a JPEG or PNG")
+            end
+        else
+            errors.add(:product_image, 'is required')
         end
     end
 
