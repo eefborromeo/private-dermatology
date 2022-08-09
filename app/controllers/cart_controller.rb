@@ -10,7 +10,7 @@ class CartController < ApplicationController
         @cart_item.quantity += items_params[:quantity].to_i
 
         if @cart_item.save
-            redirect_to cart_index_path
+            redirect_to products_path, notice: "Item added to your cart."
         else
             redirect_to product_path(params[:product_id]), alert: "#{@cart_item.errors.first.message}"
         end
