@@ -2,7 +2,8 @@ class CreateAppointmentTransactions < ActiveRecord::Migration[6.1]
   def change
     create_table :appointment_transactions do |t|
       t.references :user, null: false, foreign_key: true
-      t.bigint :transaction_id
+      t.string :transaction_id
+      t.string :transaction_amount
       t.date :appt_date
       t.time :appt_time
       t.string :appt_reason
