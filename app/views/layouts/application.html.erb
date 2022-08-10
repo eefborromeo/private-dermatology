@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-screen">
   <head>
     <title>PrivateDermatology</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,65 +11,54 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>
-      <ul>
-          <li>
-            <%= link_to "Home", root_path %>
-          </li>
-          <li>
-            <%= link_to "Products", products_path %>
-          </li>
-          <li>
-            <%= link_to "Schedule an Appointment", slot_index_path %>
-          </li>
-        <% if user_signed_in? %>
-          <% if current_user.admin? %>
+  <body class="h-full">
+    <header class="border-b-2 px-6 py-10 flex justify-between">
+      <div class="flex gap-4">
+        <div>
+          <h1>PD</h1>
+        </div>
+        <ul class="flex gap-4">
             <li>
-                <%= link_to "Dashboard", admin_dashboard_index_path %>
+              <%= link_to "Home", root_path %>
             </li>
             <li>
-                <%= link_to "Inventory", admin_inventory_index_path %>
+              <%= link_to "Products", products_path %>
             </li>
             <li>
-                <%= link_to "Create Appointment Slots", new_slot_path %>
+              <%= link_to "Schedule an Appointment", slot_index_path %>
             </li>
-            <li>
-                <%= link_to "Appointment Slots", slot_index_path %>
-            </li>
-            <li>
-                <%= link_to "All Patients", users_index_path %>
-            </li>
-          <% end %>
-          <li>
-                <%= link_to "My Appointments", appointment_index_path %>
-          </li>
+        </ul>
+        </div>
+        <ul class="flex gap-4">
+          <% if user_signed_in? %>
+            <% if current_user.admin? %>
+              <li>
+                    <%= link_to "Dashboard", admin_dashboard_index_path %>
+                </li>
+            <% end %>
           <li>
             <%= link_to "My Account", edit_user_registration_path %>
           </li>
           <li>
-            <%= link_to "My Transactions", transaction_index_path %>
-          </li>
-          <li>
-            <%= link_to "My Cart", cart_index_path %>
-          </li>
-          <li>
             <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
           </li>
-        <% else %>
+          <% else %>
           <li>
-            <%= link_to "Create Account", new_user_registration_path %>
+          <%= link_to "Create Account", new_user_registration_path %>
           </li>
           <li>
             <%= link_to "Login", new_user_session_path %>
           </li>
-        <% end %>
-      </ul>
+          <% end %>
+        </ul>
     </header>
-    <main class="container mx-auto mt-28 px-5">
-       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+    <main class="v-full">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
       <%= yield %>
     </main>
+    <footer class="fixed bottom-0 p-4 md:p-6 bg-zinc-900 text-white w-full">
+      <h1>© 2022 Private Dermatology MD. All Rights Reserved.</h1>
+    </footer>
   </body>
 </html>
