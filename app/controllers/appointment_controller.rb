@@ -1,11 +1,15 @@
 class AppointmentController < ApplicationController
     before_action :check_user_info, if: :user_signed_in?
+    include AppointmentHelper
 
     def index
       if current_user.admin?
         @appointments = Appointment.all
       else
-        @appointments = current_user.appointments
+        @paid_appointments = current_user.appointment_transactions
+        collection = good_and_bad_appointments
+        @good_appointments = collection[0]
+        @bad_appointments = collection[1]
       end
     end
 
@@ -20,6 +24,9 @@ class AppointmentController < ApplicationController
     end
 
     def destroy
+      appointment = current_user.appointments.find(params[:id])
+      appointment.destroy!
+      redirect_to slot_index_path, notice: "Appointment successfully removed."
     end
 
     def create
