@@ -77,8 +77,7 @@ module TransactionHelper
     )
 
     if new_transaction.persisted?
-      appt.status = 1
-      appt.save
+      appt.destroy!
       slot.availability = false
       slot.save
       # maybe dito ikabit yung sa google calendar api
@@ -93,9 +92,11 @@ module TransactionHelper
 
   def process_webhook_event(transaction)
     # this will be called after the creation of the transaction record to simulate the real world asynchronous event from paymongo
-    # remove this and all calls related to this if the webhook controller will be live and the website accepts real money
-    response = Payment::GcashPayment.process_payment(transaction.transaction_amount, transaction.transaction_id)
-    transaction.transaction_id = response
+    numeric = []
+    for a in 1..5 do
+      numeric << rand(0..9)
+    end
+    transaction.transaction_id = "pay-T_#{numeric.join("")}"
     transaction.save
   end
 
