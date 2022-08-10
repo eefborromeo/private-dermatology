@@ -4,7 +4,11 @@
         <%= image_tag product.product_image %>
         <h2><%= product.product_name %></h2>
         <div>Price - <%= product.price %></div>
-        <div>Stocks - <%= product.stocks %></div>
+        <% unless product.stocks == 0 %>
+            <div>Stocks - <%= product.stocks %></div>
+        <%else%>
+            <div>This product is currently unavailable</div>
+        <%end%>
     </a>
     <br>
 <% end %>
