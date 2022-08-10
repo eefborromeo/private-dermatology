@@ -45,7 +45,8 @@ ActiveRecord::Schema.define(version: 2022_08_08_134536) do
 
   create_table "appointment_transactions", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "transaction_id"
+    t.string "transaction_id"
+    t.string "transaction_amount"
     t.date "appt_date"
     t.time "appt_time"
     t.string "appt_reason"
@@ -82,7 +83,8 @@ ActiveRecord::Schema.define(version: 2022_08_08_134536) do
 
   create_table "product_transactions", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "transaction_id"
+    t.string "transaction_id"
+    t.string "transaction_amount"
     t.string "prod_name"
     t.text "prod_desc"
     t.integer "prod_price"
