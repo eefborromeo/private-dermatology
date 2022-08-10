@@ -1,11 +1,14 @@
 <%= image_tag @product.product_image %>
 <h1><%= @product.product_name %></h1>
 <span><%= @product.price %></span>
-<%= form_with model: @cart_item, url: cart_index_path, method: :post do |form| %>
-    <%= form.hidden_field :product_id, value: @product.id %>
-    <%= form.label :quantity, "Quantity" %>
-    <%= form.number_field :quantity, min: 1, max: @product.stocks %>
-    <%= form.submit "Add to Cart"%>
-<% end %>
-
 <p><%= @product.product_desc %></p>
+<% unless @product.stocks == 0 %>
+    <%= form_with model: @cart_item, url: cart_index_path, method: :post do |form| %>
+        <%= form.hidden_field :product_id, value: @product.id %>
+        <%= form.label :quantity, "Quantity" %>
+        <%= form.number_field :quantity, min: 1, max: @product.stocks %>
+        <%= form.submit "Add to Cart"%>
+    <% end %>
+<%else%>
+    <div>This product is currently unavailable</div>
+<%end%>
