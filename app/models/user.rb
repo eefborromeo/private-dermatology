@@ -34,7 +34,6 @@ class User < ApplicationRecord
           contact_no: 'Please Update'
       )
     end
-    user.image = auth.info.image
     user.uid = auth.uid
     user.provider = auth.provider
     user.access_token = auth.credentials.token
