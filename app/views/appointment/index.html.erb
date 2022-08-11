@@ -1,5 +1,18 @@
 <div> Appointments </div>
-
+<% if current_user.admin? %>
+  <div>
+  <% @appointments.each do |appt| %>
+    <div class="border-red-400 border-solid border-2 w-1/3">
+      <h1 class="red-400"><%= appt.created_at.strftime('%-B %-d, %Y') %></h1>
+      <div><%= appt.reason %></div>
+      <div><%= appt.interaction %></div>
+      <div><%= appt.status %></div>
+      <div><%= appt.note %></div>
+    </div>
+    <br>
+  <% end %>
+</div>
+<% else %>
 <div>
   <% @paid_appointments.each do |appt| %>
     <div class="border-red-400 border-solid border-2 w-1/3">
@@ -46,3 +59,4 @@
     <br>
   <% end %>
 </div>
+<% end %>
