@@ -67,5 +67,6 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 gem 'dotenv-rails'
 gem "omniauth-rails_csrf_protection"
 gem 'omniauth-google-oauth2'
+gem 'google-api-client' # this is the gem that is saying it is deprecated. see google for the latest gem I think its googleauth gem or something
 gem "simple_calendar", "~> 2.4"
 gem 'image_processing', '~> 1.2'
