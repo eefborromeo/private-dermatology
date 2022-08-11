@@ -3,6 +3,10 @@ class Product < ApplicationRecord
     has_many :users, through: :cart_items
     has_one_attached :product_image
 
+    validates :product_name, presence: true, length: {minimum: 2}
+    validates :product_desc, presence: true, length: {minimum: 2}
+    validates :price, presence: true, format: { with: /\A\d+(?:\.\d{2})?\z/ }, numericality: { greater_than: 0, less_than: 1000000 }
+    validates :stocks, presence: true, numericality: { greater_than: 0 }
     validate :acceptable_image
 
     def acceptable_image
