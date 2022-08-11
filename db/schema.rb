@@ -131,7 +131,6 @@ ActiveRecord::Schema.define(version: 2022_08_08_134536) do
     t.datetime "dob"
     t.string "contact_no"
     t.text "address"
-    t.string "image", default: "https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png"
     t.string "uid"
     t.string "provider"
     t.string "access_token"
