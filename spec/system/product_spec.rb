@@ -34,6 +34,7 @@ RSpec.describe "Products", type: :system do
             product = create(:product)
             login(user)
             add_to_cart(product)
+            click_on "Cart"
             click_on "Remove"
             expect(page).to have_content("Item removed from cart.")
             expect(page).not_to have_content(product.product_name)
