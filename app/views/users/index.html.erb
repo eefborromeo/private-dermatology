@@ -1,9 +1,12 @@
-<div>
+<div class=''>
   <% @users.each do |user| %>
-
+    <% if user.admin == false %>
       <%= user.email %><br/>
       <%= user.address %><br/>
       <%= user.gender %><br/>
-      
+      <%= user.dob %><br/>
+      <%= user.contact_no %><br/>
+      <%= image_tag user.image, class: "w-5 h-5" %><br/>
+    <% end %>
   <% end %> 
 </div>
