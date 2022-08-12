@@ -2,6 +2,8 @@ class CartItem < ApplicationRecord
   belongs_to :user
   belongs_to :product
 
+  validates :quantity, presence: true
+  
   before_create :check_quantity
 
   private
