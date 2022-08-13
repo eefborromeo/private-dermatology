@@ -3,15 +3,11 @@ class AppointmentController < ApplicationController
     include AppointmentHelper
 
     def index
-      if current_user.admin?
-        @appointments = Appointment.all
-      else
-        @appointments = Appointment.all
-        @paid_appointments = current_user.appointment_transactions
-        collection = good_and_bad_appointments
-        @good_appointments = collection[0]
-        @bad_appointments = collection[1]
-      end
+      @appointments = Appointment.all
+      @paid_appointments = current_user.appointment_transactions
+      collection = good_and_bad_appointments
+      @good_appointments = collection[0]
+      @bad_appointments = collection[1]
     end
 
     def show

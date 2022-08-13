@@ -1,4 +1,34 @@
-<div>
-  <h1 class="font-bold text-4xl">AppointmentTransactions#index</h1>
-  <p>Find me in app/views/appointment_transactions/index.html.erb</p>
+
+<div class='p-7 h-screen w-full'>
+  <div class='w-full h-1/6 flex flex-row justify-between items-center p-5'>
+    <div class="text-5xl font-bold p-6"> Appointments </div>
+  </div>
+  <table class='w-full'> 
+    <tr class='font-bold'>
+      <th class='w-1/6'> Name </th>
+      <th class='w-1/6'> Date </th>
+      <th class='w-1/6'> Time </th>
+      <th class='w-1/6'> Reason </th>
+      <th class='w-1/6'> Notes </th>
+      <th class='w-1/6'> Status </th>
+    </tr>
+    <% @appt.each do |a| %>
+    <tr class='text-center'>
+      <td class=''><%= a.user.full_name %></td>
+      <td class=''><%= a.appt_date.strftime('%-B %-d, %Y') %></td>
+      <td class='uppercase'><%= a.appt_time.strftime("%I:%M%p") %></td>
+      <td class='uppercase'><%= a.appt_reason %></td>
+      <td class='uppercase'>
+        <% if a.appt_note.nil? %>
+          <%= link_to "No Notes", edit_appointment_transaction_path(a.id) %>
+        <% else %>
+          <%= link_to a.appt_note, edit_appointment_transaction_path(a.id) %>
+        <% end %>
+      </td>
+      <td>
+        <%= button_to a.appt_status, appointment_transaction_path(a), :method => :patch, class: "w-36 bg-amber-600 uppercase p-1 rounded-2xl border-2 border-solid border-black" %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
 </div>
