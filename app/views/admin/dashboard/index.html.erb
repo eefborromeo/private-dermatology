@@ -1,24 +1,88 @@
-<div class="grid grid-cols-12">
-    <ul class="col-span-3">
-        <li>
-        <%= link_to "Dashboard", admin_dashboard_index_path %>
-        </li>
-        <li>
-            <%= link_to "Inventory", admin_inventory_index_path %>
-        </li>
-        <li>
-            <%= link_to "Create Appointment Slots", new_slot_path %>
-        </li>
-        <li>
-            <%= link_to "Appointment Slots", slot_index_path %>
-        </li>
-        <li>
-            <%= link_to "All Patients", users_index_path %>
-        </li>
-    </ul>
-    <div class="col-span-9">
-    <h1>Admin Dashboard</h1>
-    <br>
-    <%= link_to "Transactions", admin_transaction_index_path %>
-    </div>
+<div class="grid grid-rows-2 grid-cols-2 w-full h-full "> 
+  <div class=" m-8 border-red-400 border-dotted border-4  p-4 m-3 bg-white rounded-lg border border-amber-600">
+    <div class="p-5"> Today Appoitments </div>
+    <table class='w-full'> 
+      <tr class='font-bold'>
+        <th class=''> Name </th>
+        <th class=''> Date </th>
+        <th class=''> Time </th>
+        <th class=''> Reason </th>
+        <th class=''> Interaction </th>
+      </tr>
+      <% @today.each do |t| %>
+      <tr class="text-center">
+        <td class="font-bold text-lg"><%= t.user.full_name %></td>
+        <td><%= t.appt_date %></td>
+        <td><%= t.appt_time %></td>
+        <td><%= t.appt_reason %></td>
+        <td><%= t.appt_interaction %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class=" m-8 border-red-400 border-dotted border-4  p-4 m-3 bg-white rounded-lg border border-amber-600">
+    <div class="p-5"> Upcoming Appoitments </div>
+    <table class='w-full'> 
+      <tr class='font-bold'>
+        <th> Name </th>
+        <th> Date </th>
+        <th> Time </th>
+        <th> Reason </th>
+        <th> Interaction </th>
+      </tr>
+      <% @upcoming.each do |u| %>
+      <tr class="text-center">
+        <td class="font-bold text-lg"><%= u.user.full_name %></td>
+        <td><%= u.appt_date %></td>
+        <td><%= u.appt_time %></td>
+        <td><%= u.appt_reason %></td>
+        <td><%= u.appt_interaction %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="mx-8 border-red-400 border-dotted border-4  p-4 m-3 bg-white rounded-lg border border-amber-600">
+    <div class="p-5"> Low Stock Products </div>
+    <table class='w-3/6'> 
+      <tr class='font-bold'>
+        <th class=''> Name </th>
+        <th class=''> Price </th>
+        <th class=''> Stocks </th>
+      </tr>
+      <% @low.each do |l| %>
+      <tr class="text-center">
+        <td class="font-bold text-lg"><%= l.product_name %></td>
+        <td><%= l.price %></td>
+        <td><%= l.stocks %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="mx-8 border-red-400 border-dotted border-4  p-4 m-3 bg-white rounded-lg border border-amber-600">
+    <div class="p-5"> Latest Transactions </div>
+    <table class='w-full'> 
+      <tr class='font-bold'>
+        <th class=''> Transaction ID </th>
+        <th class=''> Amount </th>
+        <th class=''> Date </th>
+        <th> Service </th>
+      </tr>
+      <% @product_transactions.each do |pt| %>
+      <tr class="text-center">
+        <td class="font-bold text-lg"><%= pt.transaction_id %></td>
+        <td><%= pt.transaction_amount %></td>
+        <td><%= pt.created_at %></td>
+        <td> Store </td>
+      </tr>
+      <% end %>
+      <% @appt_transactions.each do |at| %>
+      <tr class="text-center">
+        <td class="font-bold text-lg"><%= at.transaction_id %></td>
+        <td><%= at.transaction_amount %></td>
+        <td><%= at.created_at %></td>
+        <td> Appointment </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
 </div>

@@ -1,37 +1,51 @@
-<%= month_calendar do |date| %>
-  <div>
-   <%= link_to date.day, slot_index_path(dateslot: date) %>
-  </div>
-<% end %>
-
-<div> Slots </div>
-<div> Please select a day to view available slots </div>
-<div>
-  <% @slots.each do |slot| %>
+<div class="flex flex-row w-full">
+  <%= month_calendar do |date| %>
     <div>
-      <% if slot.availability == true %>
-        <%= link_to new_appointment_path(slot_id: slot.id) do %>
-          <%= slot.id %>
-          <%= slot.date.strftime('%-B %-d, %Y') %> <%# is this a bit redundant? %>
-          <%= slot.time.strftime("%I:%M%p") %>
-          <%= slot.interaction %>
-          <p>Open</p>
-        <% end %>
-      <%else%>
-        <div class="color-gray-300">
-          <%= slot.id %>
-          <%= slot.date.strftime('%-B %-d, %Y') %> <%# is this a bit redundant? %>
-          <%= slot.time.strftime("%I:%M%p") %>
-          <%= slot.interaction %>
-          <p>Booked</p>
-        </div>
-      <%end%>
+    <%= link_to date.day, slot_index_path(dateslot: date) %>
     </div>
   <% end %>
+
+  <div class="w-1/2 flex flex-col items-center justify-center">
+    <div class="text-5xl font-bold p-6"> Slots </div>
+    <div class="italic text-sm pb-3"> Please select a day to view available slots </div>
+    <div>
+      <% @slots.each do |slot| %>
+        <div class="border-black border-solid border-2 m-4">
+          <% if slot.availability == true %>
+            <div class="bg-amber-600 text-white p-3 flex flex-col">
+              <%= link_to new_appointment_path(slot_id: slot.id) do %>
+                <div>
+                  <%= slot.date.strftime('%-B %-d, %Y') %> <%# i  s this a bit redundant? %>
+                  <%= slot.time.strftime("%I:%M%p") %>
+                </div>
+                <div class="text-center font-bold uppercase">
+                  <% if slot.interaction? == "both" %>
+                    <div> Online / Face to Face </div>
+                  <% else %>
+                    <%= slot.interaction %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          <%else%>
+            <div class="bg-red-600 text-white p-3" >
+              <div>
+                <%= slot.date.strftime('%-B %-d, %Y') %> <%# i  s this a bit redundant? %>
+                <%= slot.time.strftime("%I:%M%p") %>
+              </div>
+              <div class="text-center font-bold uppercase">
+                <% if slot.interaction == "both" %>
+                    <div> Online / Face to Face </div>
+                  <% else %>
+                    <%= slot.interaction %>
+                  <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-<% if user_signed_in? && current_user.admin? %>
-<div>
-  <%= link_to 'Add Slots', new_slot_path %>
-</div> 
-<% end %>
+
 

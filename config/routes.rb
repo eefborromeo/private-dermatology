@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :cart, only: [:index, :create, :destroy]
   resources :slot, only: [:index, :new, :create, :destroy]
   resources :transaction, except: [:edit, :update, :create]
+  resources :appointment_transactions, only: [:index, :edit, :update]
   get 'complete-transaction', to: 'transaction#complete'
   post 'testpost-post', to: 'transaction#testpost'
 

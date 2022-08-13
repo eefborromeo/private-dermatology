@@ -1,0 +1,17 @@
+<div class='flex justify-center content-center text-center flex-col w-full'>
+  <div class='font-bold pt-64 pb-10 text-5xl'> Edit Notes </div>
+  <div class='flex w-5/6 justify-center content-center self-center'>
+    <%= form_with model: @appt, url: appointment_transaction_path do |form| %>
+      <div class="category-detail-list">
+        <div class="category-add">
+          <div class="field">
+            <%= form.label :appt_note, "Appoitment Notes" ,class: "text-left font-bold"%></br>
+            <%= form.text_area :appt_note, class: "block border-1 border-black" %>
+          </div>
+        </div>
+      <div class="submit"></br>
+        <button class='text-xl font-bold bg-cyan-500 uppercase p-1 rounded-2xl border-2 border-solid border-black w-48'><%= form.submit "Submit", class: "button-form" %></button>
+      </div>
+    <% end %>
+  </div>
+</div>
