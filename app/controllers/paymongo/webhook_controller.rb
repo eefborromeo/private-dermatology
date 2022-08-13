@@ -21,9 +21,9 @@ class Paymongo::WebhookController < ApplicationController
     appt = AppointmentTransaction.where(transaction_id: params['data']['attributes']['data']['id'])
     prod = ProductTransaction.where(transaction_id: params['data']['attributes']['data']['id'])
 
-    if appt.length !== 0
+    if appt.length != 0
       transaction = appt[0]
-    elsif prod.length !== 0
+    elsif prod.length != 0
       transaction = prod[0]
     else
       return
