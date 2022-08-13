@@ -1,0 +1,19 @@
+<h1>This is Appointment Show</h1>
+
+<%= @appointment.id %>
+<%= @appointment.note %>
+<%= @appointment.interaction %>
+<%= @appointment.reason %>
+<%= @appointment.status %>
+
+<% unless @appointment.status == "confirmed" %>
+  <p>Pay for this appointment?</p>
+  <p>This will confirm your appointment and close this slot.</p>
+  <br>
+  <%= form_with url: payments_gcash_payment_path, method: :post do |form| %>
+    <%= form.hidden_field :amount, value: "5000" %>
+    <%= form.hidden_field :payment_category, value: "Appointment Payment" %>
+    <%= form.hidden_field :appointment_id, value: @appointment.id %>
+    <%= form.submit "Pay with GCash" %>
+  <%end%>
+<%end%>

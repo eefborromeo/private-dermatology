@@ -1,0 +1,44 @@
+<div class="w-full">
+  <div class='flex flex-col justify-center content-center'>
+    <div class='font-bold pt-48 pb-8 text-5xl text-center'> New Slots </div>
+    <div class='flex w-96 justify-center content-center self-center'>
+      <%= form_with model: @slot, url: slot_index_path do |form| %>
+        <div class="category-detail-list">
+          <div class="category-add">
+            <div class="my-3">
+              <%= form.label :date, class: "text-left font-bold text-xs"%></br>
+              <%= form.date_field  :date, class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none w-48 w-48" %>
+            </div>
+            <div class="my-3">
+              <%= form.label :time, class: "text-left font-bold text-xs"%></br>
+              <%= form.time_field  :time, class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none w-48" %>
+            </div>
+          </div>
+          <div class="category-add">
+            <div class="flex flex-col m-3"></br>
+              <div>     
+              <%= form.radio_button :interaction, "online" %>        
+              <%= form.label :interaction, 'Online', class:"m-3" %>
+              </div> 
+              <div>
+              <%= form.radio_button :interaction, "face_to_face" %>
+              <%= form.label :interaction, 'Face To face', class:"m-3" %>
+              </div>
+              <div>
+              <%= form.radio_button :interaction, "both" %>
+              <%= form.label :interaction, 'Online/Face To face', class:"m-3" %>
+              </div>
+            </div>
+          </div>
+          <div class="category-add">
+            <div class="field"></br>
+              <%= form.hidden_field :availability, value: "True" %>
+            </div>
+          </div>
+        <div class="submit"></br>
+          <button class='text-xl font-bold bg-amber-600 uppercase p-1 rounded-2xl border-2 border-solid border-black w-48'><%= form.submit "Submit", class: "button-form" %></button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

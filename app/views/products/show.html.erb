@@ -1,0 +1,19 @@
+<div class="flex flex-col justify-center items-center">
+  <div class="text-5xl font-bold p-6"> Shop </div>
+    <%= image_tag @product.product_image %>
+    <h1 class="text-3xl font-bold uppercase m-3"><%= @product.product_name %></h1>
+    <span class="text-xl font-bold uppercase m-3">₱ <%= @product.price %></span>
+    <p class="m-3 italic"><%= @product.product_desc %></p>
+    <% unless @product.stocks == 0 %>
+        <%= form_with model: @cart_item, url: cart_index_path, method: :post do |form| %>
+          <div class="flex flex-col">
+            <%= form.hidden_field :product_id, value: @product.id %>
+            <%= form.label :quantity, "Quantity", class: "text-sm font-bold text-center" %>
+            <%= form.number_field :quantity, min: 1, max: @product.stocks, :class => "bg-transparent border-0 text-center" %>
+            <%= form.submit "Add to Cart", class: "inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 m-4"%>
+          </div>
+        <% end %>
+    <%else%>
+        <div>This product is currently unavailable</div>
+    <%end%>
+</div>

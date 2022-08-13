@@ -1,0 +1,58 @@
+<div class="flex flex-col items-center justify-center ">
+  <div class="w-1/4 flex flex-col items-center justify-center border-black border-solid border-2">
+    <div class="p-2 text-3xl font-bold">Sign up</div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'flex flex-col justify-center items-center'}) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="pt-2">
+    <%= f.label :full_name, class: "text-xs font-bold" %><br />
+    <%= f.text_field :full_name, autofocus: true, class: "w-96" %>
+  </div>
+
+  <div class="flex flex-row pt-2 pr-2 w-96">
+    <div class="flex flex-col pt-2 pr-2">
+      <%= f.label :gender, class: "text-xs font-bold" %><br />
+      <%= f.select :gender, ["Select", "Male", "Female"], autofocus: true %>
+    </div>
+
+    <div class="flex flex-col p-2">
+      <%= f.label :dob, "Date of Birth", class: "text-xs font-bold"%><br />
+      <%= f.date_field :dob, autofocus: true, class: "w-64"  %>
+    </div>
+  </div>
+
+  <div class="pt-2">
+    <%= f.label :address, class: "text-xs font-bold" %><br />
+    <%= f.text_area :address, autofocus: true, class: "w-96"  %>
+  </div>
+
+  <div class="pt-2">
+    <%= f.label :contact_no, class: "text-xs font-bold"%><br />
+    <%= f.phone_field :contact_no, autofocus: true, class: "w-96"  %>
+  </div>
+
+  <div class="pt-2">
+    <%= f.label :email, class: "text-xs font-bold" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-96"  %>
+  </div>
+
+  <div class="pt-2">
+    <%= f.label :password, class: "text-xs font-bold" %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password", class: "text-xs font-bold w-96"%>
+  </div>
+
+  <div class="p-2">
+    <%= f.label :password_confirmation, class: "text-xs font-bold" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-96"  %>
+  </div>
+
+  <div class="flex items-center justify-center w-20 bg-slate-900 py-2 px-4 text-slate-50 rounded-full hover:bg-amber-600 hover:text-black font-bold">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

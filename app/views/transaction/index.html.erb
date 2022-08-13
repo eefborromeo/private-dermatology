@@ -1,0 +1,26 @@
+<div class="flex flex-col justify-center items-center">
+  <div class="text-5xl font-bold p-6"> Transactions </div>
+  <div class="flex flex-wrap">
+    <div></div>
+    <% @appointment_transactions.each do |appt| %>
+      <div class="flex flex-col items-center justify-center border-red-400 border-solid border-2  p-4 m-3 bg-white rounded-lg border border-amber-600 shadow-md hover:bg-amber-600">
+        <div class="flex justify-center uppercase font-bold text-xl"><%= appt.transaction_id %></div>
+        <h1 class="red-400"><%= appt.appt_date.strftime('%-B %-d, %Y') %> | <%= appt.appt_time.strftime("%I:%M%p") %></h1>
+        <div><%= appt.appt_reason %></div>
+        <div><%= appt.appt_interaction %></div>
+        <div class="w-4/6 uppercase font-bold text-white bg-green-700 rounded-full text-xs p-4 text-center"><%= appt.appt_status %></div>
+      </div>
+      <br>
+    <% end %>
+    <%  @product_transactions.each do |t| %>
+      <div class="flex flex-col items-center justify-center border-red-400 border-solid border-2  p-4 m-3 bg-white rounded-lg border border-amber-600 shadow-md hover:bg-amber-600">
+        <div class="flex justify-center uppercase font-bold text-xl"><%= t.transaction_id %></div>
+        <div>Items:   <%= t.prod_name %></div>
+        <div>Subtotal: <%= t.prod_price %></div>
+        <div>Quantity: <%= t.prod_quantity %></div>
+        <div class="w-11/12 uppercase font-bold text-white bg-green-700 rounded-full text-sm p-4 text-center">Total: <%= t.prod_total %></div>
+      </div>
+      <br>
+    <% end %>
+  </div>
+</div>

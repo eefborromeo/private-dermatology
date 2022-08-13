@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html class="h-screen">
   <head>
-    <title>PrivateDermatology</title>
+    <title>PrivateDermatology</title> 
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,9 +11,152 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+  <body class="w-screen h-screen">
+    <div>
+      <% if user_signed_in? %>
+        <% if current_user.admin? %>
+          <div class="flex">
+            <div class="w-1/6 h-screen bg-neutral-900 text-slate-50">
+              <div class="flex items-center justify-center">
+                <%= image_tag("b-logo.png", class: "w-28 h-28") %>
+              </div>
+              <div class="flex px-6 py-3 hover:bg-amber-600 hover:font-bold">
+                <svg class="mx-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                <%= link_to "Dashboard", admin_dashboard_index_path, class: "" %>
+              </div>
+              <div class="flex px-6 py-3 hover:bg-amber-600 hover:font-bold">
+                <svg class="mx-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+                <%= link_to "Inventory", admin_inventory_index_path %>
+              </div>
+              <div class="flex px-6 py-3 hover:bg-amber-600 hover:font-bold">
+                <svg class="mx-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <%= link_to "Create Appointment Slots", new_slot_path %>
+              </div>
+              <div class="flex px-6 py-3 hover:bg-amber-600 hover:font-bold">
+                <svg class="mx-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                <%= link_to "Appointment Slots", slot_index_path %>
+              </div>
+              <div class="flex px-6 py-3 hover:bg-amber-600 hover:font-bold">
+                <svg class="mx-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                <%= link_to "All Patients", users_index_path %>
+              </div>
+              <div class="flex px-6 py-3 hover:bg-amber-600 hover:font-bold">
+                <svg class="mx-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                <%= link_to "Appointments", appointment_transactions_path %>
+              </div>
+              <div class="flex px-6 py-3 hover:bg-amber-600 hover:font-bold">
+                <svg class="mx-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                <%= link_to "Transactions", transaction_index_path %>
+              </div>
+              <div class="flex px-6 py-3 hover:bg-amber-600 hover:font-bold">
+                <svg class="mx-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                <%= link_to "Settings", edit_user_registration_path %>
+              </div>
+              <div class="flex px-6 py-3 hover:bg-amber-600 hover:font-bold">
+                <svg class="mx-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+              </div>
+            </div>
+            <div class="w-5/6 h-screen">
+              <%= yield %>
+            </div>
+          </div>
+        <% else %>
+          <div class="flex">
+            <div class="w-1/6 h-screen bg-neutral-400 text-slate-50">
+              <div class="flex items-center justify-center">
+                <%= image_tag("c-logo.png", class: "w-28 h-28") %>
+              </div>
+              <div class="flex items-center justify-center">
+                <%= image_tag("default.png", class: "w-28 h-28") %>
+              </div>
+              <div class="flex items-center justify-center font-bold pt-3">
+                <%= current_user.full_name %>
+              </div>
+              <div class="flex items-center justify-center font-bold ">
+                <%= current_user.email %>
+              </div>
+              <div class="flex items-center justify-center font-bold pb-4">
+                <%= current_user.gender %>
+              </div>
+              <div class="flex px-6 py-3 hover:bg-amber-600 hover:font-bold">
+                <svg class="mx-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                <%= link_to "Home", root_path %>
+              </div>
+              <div class="flex px-6 py-3 hover:bg-amber-600 hover:font-bold">
+                <svg class="mx-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                <%= link_to "Shop", products_path %>
+              </div>
+              <div class="flex px-6 py-3 hover:bg-amber-600 hover:font-bold">
+                <svg class="mx-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path></svg>
+                <%= link_to "Book Appointments", slot_index_path %>
+              </div>
+              <div class="flex px-6 py-3 hover:bg-amber-600 hover:font-bold">
+              <svg class="mx-2 mx-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                <%= link_to "My Appointments", appointment_index_path %>
+              </div>
+              <div class="flex px-6 py-3 hover:bg-amber-600 hover:font-bold">
+                <svg class="mx-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                <%= link_to "Transactions", transaction_index_path %>
+              </div>
+              <div class="flex px-6 py-3 hover:bg-amber-600 hover:font-bold">
+                <svg class="mx-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                <%= link_to "Cart", cart_index_path %>
+                <span class="inline-flex justify-center items-center p-3 ml-3 w-3 h-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full dark:bg-blue-900 dark:text-blue-200"><%= CartItem.all.sum(:quantity) %></span>
+              </div>
+              <div class="flex px-6 py-3 hover:bg-amber-600 hover:font-bold">
+                <svg class="mx-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                <%= link_to "Settings", edit_user_registration_path %>
+              </div>
+              <div class="flex px-6 py-3 hover:bg-amber-600 hover:font-bold">
+                <svg class="mx-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+              </div>
+            </div>  
+            <div class="w-5/6 h-screen">
+              <%= yield %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <header class="border-b-2 p-3 w-full h-28 flex items-center">
+          <div class="flex flex-row w-full justify-between items-center">
+            <div class="flex">
+              <%= image_tag("c-logo.png", class: "w-28 h-28") %>
+            </div>
+            <div class="flex flex-row justify-evenly w-4/12 font-bold">
+              <div class="p-5">
+                <%= link_to "Home", root_path, class: "hover:border-b-2 hover:border-amber-600" %>
+              </div>
+              <div class="p-5">
+                <%= link_to "Shop", products_path, class: "hover:border-b-2 hover:border-amber-600" %>
+              </div>
+              <div class="p-5">
+                <%= link_to "Book Now", slot_index_path, class: "hover:border-b-2 hover:border-amber-600" %>
+              </div>
+              <div class="p-5">
+                <%= link_to "About", root_path, class: "hover:border-b-2 hover:border-amber-600" %>
+              </div>
+            </div>
+            <div class="flex flex-row justify-center w-1/6 font-bold">
+              <div class="w-32 p-4 text-center">
+                <%= link_to "Sign up", new_user_registration_path, class: "hover:border-b-2 hover:border-amber-600" %>
+              </div>
+              <div class="w-32 bg-slate-900 p-4 text-slate-50 rounded-full text-center hover:bg-amber-600 hover:text-black">
+                <%= link_to "Sign in", new_user_session_path, class: "" %>
+              </div>
+            </div>
+          </div>
+        </header>
+        <main class="">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+          <%= yield %>
+        </main>  
+        <footer class="fixed bottom-0 p-3 md:p-3 bg-neutral-900 text-white w-full">
+          <h1>© 2022 Private Dermatology MD. All Rights Reserved.</h1>
+        </footer>       
+      <% end %>
+    </div>
   </body>
 </html>
