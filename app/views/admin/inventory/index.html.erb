@@ -1,25 +1,24 @@
-<h1>Inventory</h1>
-<%= link_to "Add Product", new_admin_inventory_path %>
-<table class="table-fixed">
-    <thead>
-        <tr>
-            <th>Product Image</th>
-            <th>Product Name</th>
-            <th>Quantity</th>
-            <th>Actions</th>
-        </tr>
-    <thead>
-    <tbody>
-        <% @products.each do |product|%>
-            <tr>
-                <td><%= image_tag product.product_image.variant(resize_to_limit: [nil, 80]) %></td>
-                <td><%= product.product_name %></td>
-                <td><%= product.stocks %></td>
-                <td>
-                    <%= link_to "Edit", edit_admin_inventory_path(product) %>
-                    <%= link_to "Delete", admin_inventory_path(product), method: :delete, data: { confirm: 'Are you sure?' } %>
-                </td>
-            </tr>
-        <% end %>
-    </tbody>
-</table>
+<div class='p-7 h-screen w-full'>
+  <div class='w-full h-1/6 flex flex-row justify-between items-center p-5'>
+    <div class="text-5xl font-bold p-6"> Products </div>
+  </div>
+  <table class='w-full'> 
+    <tr class='font-bold'>
+      <th class='w-1/6'> Product Image </th>
+      <th class='w-1/6'> Product Name </th>
+      <th class='w-1/6'> Quantity </th>
+      <th class='w-1/6'> Actions </th>
+    </tr>
+    <% @products.each do |product|%>
+    <tr class='text-center'>
+      <td class=''><%= image_tag product.product_image.variant(resize_to_limit: [nil, 80]) %></td>
+      <td class=''><%= product.product_name %></td>
+      <td class='uppercase'><%= product.stocks %></td>
+      <td>
+        <%= link_to "Edit", edit_admin_inventory_path(product), class: "w-1/5 inline-flex justify-center items-center p-3 ml-3 w-3 h-3 text-sm font-medium text-white bg-amber-600 rounded-full" %>
+        <%= link_to "Delete", admin_inventory_path(product), method: :delete, data: { confirm: 'Are you sure?' }, class:"w-1/5 inline-flex justify-center items-center p-3 ml-3 w-3 h-3 text-sm font-medium text-white bg-red-600 rounded-full" %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
