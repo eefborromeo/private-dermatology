@@ -1,19 +1,22 @@
-<h1>This is Appointment Show</h1>
+<div class="m-20 flex flex-col items-center justify-center ">
+  <div class="w-1/4 flex flex-col items-center justify-center border-black border-solid border-2">
+    <div class="p-9 text-4xl font-bold">Payment</div>
 
-<%= @appointment.id %>
-<%= @appointment.note %>
-<%= @appointment.interaction %>
-<%= @appointment.reason %>
-<%= @appointment.status %>
+        <div class="text-3xl font-bold font-sans"><%= @appointment.interaction %></div>
+        <div class="p-2 font-bold italic text-lg">Reason: <%= @appointment.reason %></div>
+        <div class="w-4/6 uppercase font-bold text-white bg-green-700 rounded-full text-xs p-4 text-center"><%= @appointment.status %></div>
 
-<% unless @appointment.status == "confirmed" %>
-  <p>Pay for this appointment?</p>
-  <p>This will confirm your appointment and close this slot.</p>
-  <br>
-  <%= form_with url: payments_gcash_payment_path, method: :post do |form| %>
-    <%= form.hidden_field :amount, value: "5000" %>
-    <%= form.hidden_field :payment_category, value: "Appointment Payment" %>
-    <%= form.hidden_field :appointment_id, value: @appointment.id %>
-    <%= form.submit "Pay with GCash" %>
-  <%end%>
-<%end%>
+        <% unless @appointment.status == "confirmed" %>
+          <div class="text-xl p-2 font-mono font-bold">Pay for this appointment?</div>
+          <div class="text-xs">This will confirm your appointment and close this slot.</div>
+          <br>
+          <%= form_with url: payments_gcash_payment_path, method: :post do |form| %>
+            <%= form.hidden_field :amount, value: "5000" %>
+            <%= form.hidden_field :payment_category, value: "Appointment Payment" %>
+            <%= form.hidden_field :appointment_id, value: @appointment.id %>
+            <div class="inline-flex items-center p-5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"><%=image_tag("gcash.png", class: "w-10 h-10") %><%= form.submit "Pay with GCash" %></div>
+          <%end%>
+        <%end%>
+
+  </div>
+</div>
