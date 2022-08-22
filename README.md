@@ -53,15 +53,6 @@ rails db:migrate
 ```
 bin/rspec (courtesy of bundle binstubs rspec-core)
 ```
-
-## Deployment Instructions
-
-```
-heroku login
-git push heroku <branch name>
-heroku run rails db:migrate
-heroku run rails db:seed
-```
 -----------
 
 Fair Use
