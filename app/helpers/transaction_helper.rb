@@ -80,7 +80,7 @@ module TransactionHelper
       appt.destroy!
       slot.availability = false
       slot.save
-      # maybe dito ikabit yung sa google calendar api
+      initialize_google_event(new_transaction)
       process_webhook_event(new_transaction)
       clear_session_variables
     else
@@ -89,6 +89,12 @@ module TransactionHelper
   end
 
   private
+
+  def initialize_google_event(appointment_transaction)
+    #this is the start of the google calendar event creation
+    event_client = GoogleApi::GoogleCalendar::CalendarEvent.new
+    event_client.create_google_event(appointment_transaction, current_user)
+  end
 
   def process_webhook_event(transaction)
     # this will be called after the creation of the transaction record to simulate the real world asynchronous event from paymongo
