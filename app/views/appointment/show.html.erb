@@ -11,7 +11,7 @@
           <div class="text-xs">This will confirm your appointment and close this slot.</div>
           <br>
           <%= form_with url: payments_gcash_payment_path, method: :post do |form| %>
-            <%= form.hidden_field :amount, value: "5000" %>
+            <%= form.hidden_field :amount, value: ENV['APPOINTMENT_AMOUNT'] %>
             <%= form.hidden_field :payment_category, value: "Appointment Payment" %>
             <%= form.hidden_field :appointment_id, value: @appointment.id %>
             <div class="inline-flex items-center p-5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"><%=image_tag("gcash.png", class: "w-10 h-10") %><%= form.submit "Pay with GCash" %></div>

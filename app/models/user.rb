@@ -19,8 +19,6 @@ class User < ApplicationRecord
   validates :contact_no, presence: true
   validates :email, uniqueness: true
 
-  private
-
   def self.from_omniauth(auth)
     user = User.where(email: auth.info.email).first
     unless user
@@ -34,7 +32,6 @@ class User < ApplicationRecord
           contact_no: 'Please Update'
       )
     end
-    user.image = auth.info.image
     user.uid = auth.uid
     user.provider = auth.provider
     user.access_token = auth.credentials.token
@@ -44,5 +41,9 @@ class User < ApplicationRecord
     user.save
     
     user
+  end
+
+  def expired?
+    expires_at < Time.current.to_i
   end
 end
