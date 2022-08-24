@@ -4,8 +4,8 @@ module Paymongo
       include ApiErrors
       PUBLIC_KEY = ENV["PAYMONGO_PUBLIC_TEST"]
       SECRET_KEY = ENV["PAYMONGO_SECRET_TEST"]
-      PAYMENT_SUCCESS_REDIRECT = "http://localhost:3000/payments/gcash-payment/success"
-      PAYMENT_FAILED_REDIRECT = "http://localhost:3000/payments/gcash-payment/failed"
+      PAYMENT_SUCCESS_REDIRECT = "https://private-dermatology.herokuapp.com/payments/gcash-payment/success"
+      PAYMENT_FAILED_REDIRECT = "https://private-dermatology.herokuapp.com/payments/gcash-payment/failed"
       COMPANY_NAME = "Private Dermatology"
 
       def _http(url)
